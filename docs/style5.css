@@ -1,0 +1,346 @@
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* Menu hamburguer */
+.linha{
+     
+    margin: 7px;
+    border: 1px solid rgb(255, 254, 254);
+    width: 24px;
+}
+
+.menu{
+    
+    padding: 10px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.menu:hover{
+    transition: 0.5s;
+    background-color: rgb(255, 254, 254,0.2);
+    border-radius: 50px;
+}
+body {
+    background-color: black;
+}
+/* Cabeçalho */
+header{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color:rgb(15,15,15);
+    padding: 13px;
+    z-index: 1;
+    
+    
+}
+
+/* Ícones das redes socias */
+svg{
+    padding: 1px;
+}
+
+.insta{
+    width: 28px;
+}
+.social{
+    margin-left: 15px;
+}
+/* Navbar */
+li{
+    display: flex;
+    align-items: center;
+    
+    
+}
+.equipe{
+    border-bottom:1px solid rgb(14, 13, 13) ;
+}
+li svg{
+    padding: 20px;
+}
+
+li:hover{
+    background-color: rgb(190,153,58);
+    
+}
+
+#navbar{
+    
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    height: 100%;
+    width: 350px;
+    background-color: rgb(14, 13, 13);
+  
+}
+
+ a{
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    
+    padding: 20px;
+}
+
+p {
+    color:white;
+}
+
+h3 {
+    color: white;
+}
+
+.hide{
+    left: -350px;
+    transition: 0.5s;
+}
+.show{
+    transition: 0.5s;
+    left:0px;
+    
+}
+.active{
+    background-color: rgb(190,153,58);
+}
+
+.active-2{
+    background-color: rgb(111,82,51);
+}
+.no-scroll{
+    overflow: hidden;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+.section{
+    position: relative;
+    top: 100px;
+    background-color:black;
+    height: 750px;
+    width: 85%;
+}
+main{
+    height: 975px;
+}
+main h1{
+    text-align: center;
+    margin-bottom: 2em;
+    position: relative;
+    top: 1em;
+    color: white;
+    font-size: 48px;
+   
+}
+.principal{
+    margin-bottom: 6em;
+    margin-left: 2rem;
+}
+main div h2{
+    margin-left: 180px;
+    color: white;
+}
+main div p{
+    width: 50%;
+    font-size: 18px;
+    margin-left: 180px;
+    color: white;
+}
+img{
+    float: left;
+    border-radius: 500px;
+    
+    width: 130px;
+    
+}
+[data-anime]{
+   opacity: 0;
+}
+[data-anime="top"]{
+    transform: translate3d(0px,-100px,0px);
+}
+[data-anime].anime{
+    transform: translate3d(0px,0px,0px);
+    transition: 0.5s;
+    opacity: 1;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    padding: 50px;
+}
+footer div p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: white;
+    
+}
+footer{
+    background-color: rgb(15,15,15);
+    
+    
+    
+}
+footer div h1{
+     margin-bottom: 1em;
+     color: white;
+}
+
+@media (max-width:1280px){
+   .section h1{
+          font-size: 35px;
+    }
+ 
+    .section{
+        height: 850px;
+        width: 100%;
+    }
+    .section p {
+        font-size:15px;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+       
+    }
+    
+    footer div h1{
+        margin-bottom: 0;
+        
+    }
+    footer div{
+        margin-bottom: 3em;
+    }
+
+    #navbar {
+        width: 300px;
+    }
+}
+
+@media (max-width:1000px){
+    .section h1{
+           font-size: 35px;
+     }
+     .section{
+         height: 850px;
+         width: 100%;
+     }
+     .section p {
+         font-size:12px;
+         width: 35%;
+     }
+     footer{
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+     }
+    footer p {
+        width: 80%;
+    }
+     footer div h1{
+         margin-bottom: 0;
+         
+     }
+     footer div{
+         margin-bottom: 3em;
+     }
+ 
+     #navbar {
+         width: 300px;
+     }
+     header {
+        position: absolute;
+     }
+     body{
+      
+        width:100%;
+      
+        margin:0;
+        overflow-x: hidden;
+         /* Adicione esta linha para ocupar a largura total da tela */
+    }
+ }
+
+ .darken-mode {
+    background-color: rgb(190,153,58);
+  }
+
+
+ #switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    margin-left:10px;
+   
+  }
+  
+  #switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(111,82,51);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(15px);
+  }
+
+.direitos2 {
+    text-align: center;
+    margin-top: 50%; /* ajuste conforme necessário */
+    font: rgb(254,254,254);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+body::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem vertical */
+}
+
+/* Estilizando o "polegar" (a parte da barra de rolagem que o usuário arrasta) */
+body::-webkit-scrollbar-thumb {
+  background-color: #8e8e8e; /* Color of the thumb */
+  border-radius: 5px; /* Borda arredondada */
+}
+
+/* Estilizando a trilha (o fundo da barra de rolagem) */
+body::-webkit-scrollbar-track {
+   background-color: #1b1b1b;   /* Cor da trilha */
+   border-radius: 5px; /* Borda arredondada */
+}
+

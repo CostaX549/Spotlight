@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon" href="Ícone Spotlight+.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Spotlight+</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="estilo.css" rel="stylesheet">
+
+
+  
+
+ 
+
+
+</head>
+  <body  id="body" >
+    
+    <br>
+    <div id="videoPlayer">
+    
+    </div>
+    
+
+    <header class="mt-2 mb-2" id="header">
+      <div  id="menu">
+        <div class="linha"></div>
+        <div class="linha"></div> 
+        <div class="linha"></div>
+    </div>
+      
+    
+  
+    </header> 
+    <div class="search-container row justify-content-center align-items-center mb-4">
+      <div class="col-auto">
+        <input type="text" class="form-control form-control-sm bg-dark text-white rounded-pill" id="searchInput" placeholder="Pesquisar...">
+      </div>
+      <div class="col-auto">
+        <select class="form-control form-control-sm bg-dark text-white rounded-pill" id="searchType">
+          <option value="movie">Filmes</option>
+          <option value="tv">Séries</option>
+          <option value="documentary">Documentários</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary btn-sm bg-dark rounded-pill" id="searchButton"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+  <nav id="navbar" class="hide">
+    <ul class="list-unstyled">
+        <li>
+            
+              <img src="svg/IcSharpHome.svg">
+            
+                <a href="sobre nos2.html">Início
+            </a>
+        </li>
+        
+     
+        
+        <li>
+           
+             <img src="svg/IcBaselineLightbulb.svg">
+             <a href="page3.html" >Plano de Negócios
+            </a>
+        </li>
+        
+        <li>
+          <img src="svg/HeroiconsUsersSolid.svg">
+            
+          <a href="page5.html">Equipe/Colaboradores
+      </a>
+        </li>
+        
+        
+        <li id="ativado" class="active-6">
+          
+                <img src="svg/MaterialSymbolsPlayArrow.svg">
+                <a href="index.html" >Streaming
+            </a>
+        </li>
+        
+    </ul>
+  
+   
+    <div class="footer">
+    <h3>Spotlight+</h3>
+   <p>Todos os direitos reservados &copy;</p>
+  </div>
+
+ 
+</nav>
+    
+  
+  <main id="main">
+
+    <div id="teste"class="container mb-2">
+      <div class="row align-items-center">
+        <div class="col">
+          <p class="h3 text-white mb-0 d-inline">Filmes</p>
+        </div>
+        <div class="col-auto">
+          <button id="backToPopularButton" class="btn bg-transparent me-2">
+            <i class="fas fa-home"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div  class="container mb-4" id="filmes">
+      <div id="myCarouselThree" class="carousel slide">
+        <div class="carousel-inner" id="carouselInner">
+          <!-- Itens do carrossel para as imagens serão preenchidos dinamicamente -->
+        </div>
+        <a class="carousel-control-prev" href="#myCarouselThree" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarouselThree" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="teste" class="container mb-2">
+      <div class="row align-items-center">
+        <div class="col">
+          <p class="h3 text-white mb-0 d-inline">Séries</p>
+        </div>
+        <div class="col-auto">
+          <button id="backToPopularButtonSeries" class="btn bg-transparent me-2">
+            <i class="fas fa-home"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="container mb-4">
+      <div id="myCarouselSeries" class="carousel slide">
+        <div class="carousel-inner" id="carouselSeriesInner">
+          <!-- Itens do carrossel para as séries serão preenchidos dinamicamente -->
+        </div>
+        <a class="carousel-control-prev" href="#myCarouselSeries" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarouselSeries" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo</span>
+        </a>
+      </div>
+    </div>
+
+
+   
+
+    <div id="teste"class="container mb-2">
+      <div class="row align-items-center">
+        <div class="col">
+          <p class="h3 text-white mb-0 d-inline">Documentários</p>
+        </div>
+        <div class="col-auto">
+          <button id="backToPopularButtonDocumentaries" class="btn bg-transparent me-2">
+            <i class="fas fa-home"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="container mb-4">
+      <div id="myCarouselDocumentaries" class="carousel slide">
+        <div class="carousel-inner" id="carouselDocumentariesInner">
+          <!-- Itens do carrossel para os documentários serão preenchidos dinamicamente -->
+        </div>
+        <a class="carousel-control-prev" href="#myCarouselDocumentaries" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarouselDocumentaries" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo</span>
+        </a>
+      </div>
+    </div>
+
+  
+
+          
+          
+   
+           
+    
+ </main>
+
+</body> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous" defer></script>
+<script src="script.js" defer></script>
+<script src="https://kit.fontawesome.com/3b129db68e.js" crossorigin="anonymous"></script>
+</html>
+
+

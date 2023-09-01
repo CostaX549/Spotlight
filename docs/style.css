@@ -1,0 +1,622 @@
+
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* Menu hamburguer */
+.linha{
+     
+    margin: 7px;
+    border: 1px solid rgb(255, 254, 254);
+    width: 24px;
+}
+
+.menu{
+    
+    padding: 10px;
+    margin-left: 30px;
+}
+.menu:hover{
+    transition: 0.5s;
+    background-color:rgb(254,254,254,0.2);
+    border-radius: 50px;
+    cursor: pointer;
+}
+/* Cabeçalho */
+header{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(15,15,15);
+    padding: 13px;
+    z-index: 1;
+   
+    
+    
+}
+
+
+
+/* Ícones das redes socias */
+svg{
+    padding: 1px;
+}
+
+.insta{
+    width: 28px;
+}
+.social{
+    margin-left: 15px;
+}
+/* Navbar */
+li{
+    display: flex;
+    align-items: center;
+ 
+}
+
+li svg{
+    padding: 20px;
+    cursor: pointer;
+}
+
+li:hover{
+    background-color:rgb(190,153,58);
+    
+}
+#navbar{
+    z-index: 2;
+    
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    height: 100%;
+    width: 350px;
+    background-color: rgb(15,15,15);
+    
+    
+}
+
+    
+  
+
+ a{
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    
+    padding: 20px;
+}
+.hide{
+    left: -350px;
+    transition: 0.5s;
+}
+.show{
+    transition: 0.5s;
+    left:0px;
+    
+}
+.active {
+background-color: rgb(190,153,58);
+}
+.active-2 {
+    background-color: rgb(111,82,51);
+}
+
+.no-scroll{
+    overflow: hidden;
+}
+/* Main */
+#main {
+    background-color: black;
+   
+    
+}
+
+
+  
+  #main.slide-effect {
+    transform: translateX(350px); /* Valor correspondente à largura da barra vertical */
+  }
+.banner{
+    max-width: 100%;
+    object-fit: cover;
+     
+    
+}
+
+/* SOBRE E OBJETIVO*/
+.info{
+    display: flex;
+   width: 100%;
+    justify-content: center;
+    
+  
+}
+
+.objetivo{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+   color: white;
+    
+    
+}
+
+.sobre{
+    width: 40%;
+    margin-right: 50px;
+    background-color: rgb(190,153,58);
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    
+    
+   
+    
+}
+.sobre h1{
+    color: white;
+}
+.sobre p{
+    color: white;
+}
+iframe{
+    width: 100%;
+    margin-top: 10px;
+}
+[data-anime]{
+    opacity: 0;
+}
+/* Variaveis de animação*/
+[data-anime="top"]{
+    transform: translate3d(0px,-50px,0px);
+}
+[data-anime].animate{
+    opacity: 1;
+    transform: translate3d(0px,-6.5px,0px);
+    transition: 0.8s;
+}
+[data]{
+    opacity: 0;
+}
+[data="left"]{
+   transform: translate3d(-50px,0px,0px);
+}
+[data].animation{
+    opacity: 1;
+    transform: translate3d(0px,0px,0px);
+    transition: 0.8s;
+}
+/* Boxes com conteúdo e imagens (OBS:Por uma imagem ser 
+maior do que a outra tive que fazer umas adaptações , adicionar 
+classe a mais para as imagens e para as boxes
+*/
+.data{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 10px;
+   
+    
+}
+.container{
+    display: flex;
+    justify-content: center;
+    
+}
+.container h1{
+    border: 2px solid rgb(190,153,58);
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    margin-bottom: 100px;
+    color: rgb(190,153,58);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 50px;
+    
+}
+.hr-line{
+    position: relative;
+    top: 100px;
+    width: 100px;
+    border-top:1px solid orange;
+    
+}
+.datas{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    
+    width: 85%;
+    padding: 60px;
+    
+}
+
+.direitos {
+    text-align: center;
+    margin-top: 50%; /* ajuste conforme necessário */
+    color: white;
+    font-size: 17px;
+  }
+
+
+
+
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -10%;
+    margin-bottom: 2em;
+    background-color: rgb(190,153,58);
+    height: 250px;
+    width: 400px;
+    border-right: 1px solid  black;
+    
+}
+
+.darken {
+    background-color: rgba(0, 0, 0, 0.9); /* Define a cor de fundo escuro */
+  }
+
+
+.conteudo h1{
+    color: white;
+    padding: 10px;
+    text-align: center;
+   
+}
+
+.dia{
+   background-color: rgb(111,82,51);
+}
+.section p{
+    
+    margin-top: 30px;
+    margin-left: 50px;
+    width: 300px;
+    color:white;
+
+}
+.dia1{
+    background-color: rgb(111,82,51);
+}
+.png{
+    background-color: rgb(190,153,58);
+    border-radius: 50px;
+    padding: 20px;
+    width: 64px;
+    position: relative;
+    
+    bottom: 100px;
+    
+    
+    
+}
+
+
+.png1{
+    background-color:rgb(227, 64, 121);
+    border-radius: 50px;
+    padding: 29px;
+    width: 100px;
+    position: relative;
+    bottom: 90px;
+}
+/* Footer */
+footer{
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    padding: 50px;
+}
+footer div p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: white;
+    
+}
+footer{
+    background-color:rgb(15,15,15);
+    
+    
+    
+}
+footer div h1{
+     margin-bottom: 1em;
+     color: white;
+}
+
+body {
+    background-color: black;
+  }
+
+/* Responsividade do site */
+
+
+@media (max-width: 1600px) {
+    .datas {
+        width: 90%; /* Reduzir a largura do container */
+        padding: 40px; /* Reduzir o espaçamento interno */
+    }
+
+    .conteudo {
+      
+        width: 310px; /* Reduzir a largura do conteúdo */
+    }
+
+     .conteudo p {
+        font-size: 14px; /* Tamanho de fonte padrão */
+      
+    }
+    .conteudo h1 {
+        font-size: 20px;
+    }
+    .conteudo p {
+        width: 75%;
+    }
+}
+@media (max-width:1024px){
+    header {
+        padding: 10px; /* Defina a altura desejada para o header em layouts responsivos */
+        width: 100%;
+     
+       
+      }
+    
+
+          .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        
+    }
+
+    .sobre{
+        border-radius: 0;
+       padding: 0;
+       width: 100%;
+       margin-right: 0;
+       display: flex;
+       padding-top: 50px;
+       padding-bottom: 50px;
+       box-shadow: 0 0 0 ;
+       
+      
+    }
+    .sobre p{
+        width: 70%;
+        margin-left: 200px;
+    }
+    .sobre h1{
+        margin-left: 200px;
+    }
+    iframe{
+        width: 70%;
+        margin-left: 200px;
+    }
+    .datas{
+        display: flex;
+        flex-direction: column;
+       
+    }
+    .png{
+        bottom: 5px;
+        width: 52px;
+    }
+    .png1{
+        bottom: 5px;
+        width: 52px;
+        
+    }
+    .conteudo1{
+        top: 0;
+    }
+    .data{
+        margin-top: 15px;
+    }
+      
+      body{
+      
+        width:100%;
+        background-color: rgb(15,15,15);
+        margin:0;
+        overflow-x: hidden;
+         /* Adicione esta linha para ocupar a largura total da tela */
+    }
+
+    #main {
+        overflow-x: hidden;
+    }
+
+    .sobre p{
+        width: 70%;
+     
+        margin-left: 70px;
+    }
+    .sobre h1{
+        margin-left: 70px;
+    }
+    iframe{
+        width: 70%;
+        margin-left: 70px;
+    }
+    
+    
+    .container h1{
+        font-size: 50px;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+    }
+    footer div h1{
+        margin-bottom: 0;
+        
+    }
+    footer div{
+        margin-bottom: 3em;
+    }
+    footer p {
+        width:80%
+    }
+  
+.container h1 {
+    font-size: 30px;
+}
+
+#navbar {
+    
+    width: 300px;
+}
+.datas {
+    width: 60%;
+}
+
+.objetivo {
+  width: 90%;
+}
+
+
+
+#switch {
+  
+    width: 60px;
+    height: 34px;
+    margin-top: 40px;
+    
+  }
+  
+  #switch input {
+    opacity: 1;
+    width: 60%;
+    height: 40%;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(111,82,51);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  
+   
+}
+
+
+
+.no-functions {
+    pointer-events: none; /* Desabilita eventos de clique e hover nos elementos */
+  }
+
+  .darken-mode {
+    background-color: rgb(190,153,58);
+  }
+
+
+  #switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    margin-left:10px;
+   
+  }
+  
+  #switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(111,82,51);
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(15px);
+  }
+
+body::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem vertical */
+}
+
+/* Estilizando o "polegar" (a parte da barra de rolagem que o usuário arrasta) */
+body::-webkit-scrollbar-thumb {
+  background-color: #8e8e8e; /* Color of the thumb */
+  border-radius: 5px; /* Borda arredondada */
+}
+
+/* Estilizando a trilha (o fundo da barra de rolagem) */
+body::-webkit-scrollbar-track {
+   background-color: #1b1b1b;   /* Cor da trilha */
+   border-radius: 5px; /* Borda arredondada */
+}
+
+
