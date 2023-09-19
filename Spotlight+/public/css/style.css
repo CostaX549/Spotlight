@@ -604,7 +604,7 @@ body {
   }
 
 body::-webkit-scrollbar {
-  width: 10px; /* Largura da barra de rolagem vertical */
+  width: 7px; /* Largura da barra de rolagem vertical */
 }
 
 /* Estilizando o "polegar" (a parte da barra de rolagem que o usuário arrasta) */

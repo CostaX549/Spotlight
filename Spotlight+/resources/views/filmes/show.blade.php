@@ -3,15 +3,14 @@
 @section('title', $filme['title'])
 
 @section('content')
-
-<div class="container-fluid p-0">
-
+<a href="javascript:history.back()"class="back-link text-primary">
+        <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+    </a>
     <div class="position-relative">
-        <img src="https://image.tmdb.org/t/p/original/{{ $filme['backdrop_path'] }}" alt="{{ $filme['title'] }}" class="img-fluid rounded main-image">
-        <div class="image-overlay"></div> <!-- Elemento de sobreposição para o gradiente de opacidade -->
-    
-    </div>
+       <img src="https://image.tmdb.org/t/p/original/{{ $filme['backdrop_path'] }}" alt="{{ $filme['title'] }}" class="rounded main-image">
+       <div class="gradient-overlay"></div>
 </div>
+   
 
 <div id="infocontainer" class="container mt-5">
   
@@ -77,7 +76,7 @@
         <div class="row mt-5">
     <h2 class="mb-3 mt-5">Trailer</h2>
 @php
-$apiKey = '9549bb8a29df2d575e3372639b821bdc';
+$apiKey = env('TMDB_API_KEY');
 $movieId = $filme['id'];
 
 $client = new \GuzzleHttp\Client();
@@ -141,6 +140,14 @@ if (!empty($trailersPt)) {
         @endif
     @endif
 </div>
+@guest
+<a href="/dashboard"> 
+<button class="btn btn-primary mt-3 ml-5">
+    Adicionar aos favoritos
+    
+</button>
+</a>
+@endguest
 
 
     <!-- Botão para favoritar ou desfavoritar -->

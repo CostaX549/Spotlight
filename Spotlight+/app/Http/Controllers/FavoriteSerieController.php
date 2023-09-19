@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http; // Importe a classe Http
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\Paginator;
 
 class FavoriteSerieController extends Controller
 {
     public function addToFavorites(Request $request)
 {
+     
     $user = Auth::user();
     $serieId = $request->input('serie_id');
     $favoriteSeries = $user->favoriteSeries()->get();
@@ -36,41 +38,48 @@ public function removeFromFavorites(Request $request)
     // Remove a série dos favoritos do usuário
     $user->favoriteSeries()->where('serie_id', $serieId)->delete();
     
-    return redirect('/dashboard');
+    return redirect('/dashboard')->with('success', 'Série removida dos favoritos com sucesso.');
 }
 
 public function dashboard()
 {
-    $user = auth()->user();
+    if (Auth::check()) {
+        
+        $user = auth()->user();
+        $favoriteSeries = $user->favoriteSeries;
+        $apiKey = env('TMDB_API_KEY');
 
-    $favoriteSeries = $user->favoriteSeries;
+        foreach ($favoriteSeries as $favoriteSerie) {
+            $serieId = $favoriteSerie->serie_id;
+
+            $seriePosterPath = Cache::remember('serie_' . $serieId . '_poster', now()->addHours(2), function () use ($serieId, $apiKey) {
+                $response = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key={$apiKey}&language=pt-BR");
+                $serieData = $response->json();
+                return $serieData['poster_path'];
+            });
+
+            $favoriteSerie->seriePosterPath = $seriePosterPath; // Adicione o caminho do pôster da série ao objeto $favoriteSerie
+        }
+
+        // Verifique se os dados dos filmes favoritos estão em cache
+        $favoriteMovies = Cache::remember('user_favorite_movies_' . $user->id, now()->addHours(2), function () use ($user, $apiKey) {
+            return $user->favoriteMovies->map(function ($favoriteMovie) use ($apiKey) {
+                $movieId = $favoriteMovie->movie_id;
+                $response = Http::get("https://api.themoviedb.org/3/movie/{$movieId}?api_key={$apiKey}&language=pt-BR ");
+                $movieData = $response->json();
+                $favoriteMovie->moviePosterPath = $movieData['poster_path'];
+                return $favoriteMovie;
+            });
+        });
+       
 
 
-    foreach ($favoriteSeries as $favoriteSerie) {
-        $serieId = $favoriteSerie->serie_id;
-        $response = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key=9549bb8a29df2d575e3372639b821bdc&language=pt-BR");
-        $serieData = $response->json();
-
-        $favoriteSerie->serie = $serieData; // Adicione os detalhes da série ao objeto $favoriteSerie
+        return view('dashboard', compact('user',  'favoriteSeries', 'favoriteMovies'));
+    } else {
+        
+        return view('dashboard');
     }
-
-   // Verifique se os dados dos filmes favoritos estão em cache
-   $favoriteMovies = Cache::remember('user_favorite_movies_' . $user->id, now()->addHours(2), function () use ($user) {
-    return $user->favoriteMovies->map(function ($favoriteMovie) {
-        $movieId = $favoriteMovie->movie_id;
-        $response = Http::get("https://api.themoviedb.org/3/movie/{$movieId}?api_key=9549bb8a29df2d575e3372639b821bdc&language=pt-BR");
-        $movieData = $response->json();
-        $favoriteMovie->movie = $movieData;
-        return $favoriteMovie;
-    });
-});
-if ( $user && $user->is_admin==1) {
-    return view('layouts.empresa');
-} else {
-     return view('dashboard',compact('user', 'favoriteSeries','favoriteMovies'));
 }
 
 
-    return view('dashboard', compact('user', 'favoriteSeries','favoriteMovies'));
-}
 }

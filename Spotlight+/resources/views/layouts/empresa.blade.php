@@ -2,6 +2,10 @@
 <html lang="pt-br">
 
 <head>
+    <!-- PWA  -->
+<meta name="theme-color" content="#000000"/>
+<link rel="apple-touch-icon" href="{{ asset('corinthians.png') }}">
+<link rel="manifest" href="{{ asset('manifest.json') }}">
     <link rel="icon" href="/img/spotlight.png" type="image/png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,6 +84,14 @@
       
 </footer>
 </body>
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
 <script src="/js/scripts2.js" defer></script>
 
 </html>

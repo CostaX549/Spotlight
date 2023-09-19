@@ -1,10 +1,10 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        {{ __('Autenticação em dois fatores') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        {{ __('Adicione uma segurança adicional a sua conta usando autenticação em dois fatores') }}
     </x-slot>
 
     <x-slot name="content">
@@ -16,13 +16,13 @@
                     {{ __('You have enabled two factor authentication.') }}
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                {{ __('Você não ativou a autenticação em dois fatores') }}
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600">
             <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+                {{ __('Quando a autenticação de dois fatores estiver ativada, você será solicitado a inserir um token seguro e aleatório durante a autenticação. Você pode obter esse token no aplicativo Google Authenticator do seu celular.') }}
             </p>
         </div>
 
@@ -80,7 +80,7 @@
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                        {{ __('Ativar') }}
                     </x-button>
                 </x-confirms-password>
             @else

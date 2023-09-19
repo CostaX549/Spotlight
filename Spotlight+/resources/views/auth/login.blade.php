@@ -39,7 +39,9 @@
                 <a href="#">Precisa de ajuda?</a>
             </div>
         </div>
-
+        <div class="register-link">
+            <p>Não possui uma conta? <a href="{{ route('register') }}">Registre-se</a></p>
+        </div>
     
 
            
