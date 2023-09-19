@@ -1,8 +1,8 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   color:white;
+ font: white;
+  
   }
 
  
@@ -13,14 +13,21 @@
       padding: 0px;
       background-color: rgb(15,15,15);
       overflow-x: hidden;
-     
+  
   }
-  .overflow-alternative {
-    overflow-x: hidden;
-  }
+
+
+
+
+
+ 
   
   body::-webkit-scrollbar {
-    width: 10px; /* Largura da barra de rolagem vertical */
+    width: 7px; /* Largura da barra de rolagem vertical */
+  }
+
+  body::-webkit-scrollbar:hover {
+    width: 5px; /* Largura da barra de rolagem vertical */
   }
   
   /* Estilizando o "polegar" (a parte da barra de rolagem que o usuário arrasta) */
@@ -28,6 +35,12 @@
     background-color: #8e8e8e; /* Color of the thumb */
     border-radius: 5px; /* Borda arredondada */
   }
+
+    /* Estilizando o "polegar" (a parte da barra de rolagem que o usuário arrasta) */
+    body::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(255,255,255,0.2); /* Color of the thumb */
+      border-radius: 5px; /* Borda arredondada */
+    }
   
   /* Estilizando a trilha (o fundo da barra de rolagem) */
   body::-webkit-scrollbar-track {
@@ -35,112 +48,53 @@
      border-radius: 5px; /* Borda arredondada */
   }
  
-  
-  
-  
-  .custom-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-  }
-  
-  .custom-navbar {
-   padding: 0px;
-  }
-  
-  
-  /* Estilos da animação de sublinhado */
-  
-  .position-absolute:hover {
-    transform: scale(1.1);
-  }
-  
-  .active3 {
-    background-color: rgb(190,153,58);
-  }
-  
-  
-  
-  
-  #lixao{
-  
-      font-weight: bold;
-     
-      font-size: 30px;
-     
-      
-      
-      
-  
-  }
+ /* Estilos CSS para posicionar o ícone no topo */
+.back-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  margin-left: 10px;
+  z-index: 999; /* Para garantir que o ícone esteja na parte superior */
+  transition: transform 0.2s; /* Transição suave para a escala */
+  border-radius: 50%; /* Torna o elemento um círculo */
+}
+
+/* Estilos para o efeito de hover */
+.back-link:hover {
+  transform: scale(1.3); /* Aumenta em 10% quando o mouse passa sobre ele */
+
+}
+
+ a {
+  text-decoration: none;
+}
+
+#main img:hover {
+background-color: aquamarine;
+}
+#main img {
+  transition: transform 0.3s ease-in-out; /* Adicione uma transição suave para o efeito */
+}
+
+
   
   
   
   
   
   
-  #ts{
-      font-family:Roboto;
-  }
-  #ts2{
-      font-family:Roboto;
-  }
-  #ts3{
-      font-family:Roboto;
-  }
   
+ 
 
 
   
   
   
     @media (max-width: 1000px) {
-      #navbar {
-         
-          width: 300px;
-      }
-      #menu{
-        animation-name: fade-in;
-        animation-duration: 0.5s;
-        padding: 10px;
-        margin-left: 40px;
-        position: absolute;
-      } 
-      he
-      .close-video-button {
-        font-size: 10px;
-        top: 0px;
-        position: absolute;
-      }
-    
-      body {
-        padding-top: 30px;
-      }
+     
 
-      #navbar {
-       
-        width: 300px;
-    }
-    #menu{
-      animation-name: fade-in;
-      animation-duration: 0.5s;
-      padding: 10px;
-      margin-left: 40px;
+    .back-link {
       position: absolute;
-    } 
-    header {
-      padding: 10px;
-    }
-    iframe {
-      width: 500px;
-      height: 500px; 
-    }
-    .custom-padding {
-      padding: none; /* Ajuste o valor conforme desejado */
     }
     }
   
@@ -151,53 +105,11 @@
   }
   
   
-    @media  (max-width:1440px) {
-      #remover-video {
-       right: 50%;
-       font-size: 20px;
-       top: 0px;
-       position: relative;
-       
-      }
-      #menu{
-        animation-name: fade-in;
-       
-        animation-duration: 0.5s;
-        padding: 5px;
-        margin-left: 10px;
-        position: absolute;
-        top: 2px;
-      } 
-   
-      
-    }
-    
-    @media screen and (width:1600px) {
-      .videoPlayer {
-        max-width: 1100px;
-      
-      }
-      #remover-video {
-        right: 15%;
-        font-size: 20px;
-        top: 0px;
-        
-       }
-    }
-    
-    @media screen and (width:1680px) {
-      .videoPlayer {
-        max-width: 1100px;
-      
-      }
-      .close-video-button{
-        right: 15%;
-        font-size: 20px;
-        top: 0px;
-        
-       }
-    }
   
+    
+   
+    
+   
   
     
   
@@ -208,20 +120,83 @@
       
     }
   
-    #videoPlayer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    z-index: -1;
-    }
     
    
   li  img {
     padding: 25px;
   }
-  
+  .season-divider {
+    margin-top: 20px; /* Espaçamento entre temporadas */
+    border: none;
+    border-top: 1px solid #ccc; /* Cor e estilo da linha */
+}
 
-  a:hover {
+
+/* Estilos para cada temporada */
+.season {
+ 
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.2s; /* Efeito de transição suave ao passar o mouse */
+  width: 100%;  background-color: #121212;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+}
+
+
+/* Estilos para o texto das temporadas */
+.season h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+
+
+.overview-text {
+
+  font-size: 18px; /* Define o tamanho da fonte */
+text-align: left;
+  line-height: 1.4; /* Define a altura da linha para melhor legibilidade */
+ 
+  margin-bottom: 10px; /* Adiciona espaço na parte inferior do elemento */
+}
+.selecionado {
+  position: relative;
+}
+
+.selecionado img {
+  opacity: 0.7; /* Aplica a opacidade somente à imagem */
+  transition: opacity 0.3s ease; /* Adiciona uma transição suave de opacidade */
+}
+
+.selecionado::before {
+  content: '\2713'; /* Código Unicode para o caractere "checkmark" (v) */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px; /* Tamanho do ícone */
+  color: white; /* Cor do ícone */
+  padding: 4px; /* Espaçamento dentro do ícone */
+  border-radius: 50%; /* Para tornar o ícone circular */
+  z-index: 1; /* Para garantir que o ícone esteja acima da imagem */
+
+  transition: opacity 0.3s ease; /* Adiciona uma transição suave de opacidade */
+}
+
+
+.season img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+  li a:hover {
     color: rgb(190,153,58);
   }
   
@@ -232,59 +207,17 @@
       
       padding: 20px;
   }
-  .hide{
-      left: -350px;
-      transition: 0.3s;
-  }
-  
-  
-  
-  #menu{
-    animation-name: fade-in;
-   
-    animation-duration: 0.5s;
-    padding: 10px;
-    margin-left: 30px;
-    position: fixed;
-  }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  
-  #menu:hover {
-    transition: 0.5s;
-    background-color:rgba(255, 255, 255, 0.2) ;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .show{
-      transition: 0.3s;
-      left:0px;
-      
-  }
-  #active {
-    background-color: rgb(190,153,58);
-  }
-  
-  .active-2{
-    background-color: rgb(111,82,51);
-  }
 
-  
-  .linha{
-       
-    margin: 7px;
-    border: 1px solid rgb(255, 254, 254);
-    width: 25px;
+  a {
+    text-decoration: none;
+    color: rgb(255, 254, 254);  
   }
+ 
   
+  
+  
+  
+ 
   
    
     
@@ -295,12 +228,8 @@
     }
    
   
+ 
   
-    
-  
-  .filled {
-    color: gold; /* Cor das estrelas preenchidas */
-  }
   
 
   
@@ -308,15 +237,7 @@
   
   
  
-  
-  .fas.fa-star.empty {
-    color: #ccc; /* Cor para estrelas vazias */
-  }
-  
-  .overflow-x {
-  overflow-x: hidden;
-  }
-  
+ 
   
   
   
@@ -325,27 +246,8 @@
     padding: 25px;
   }
   
-  .no-functions {
-    pointer-events: none;
-  }
-  
-  
   
  
-  
-  
-  
-  .active-2{
-    background-color: rgb(111,82,51);
-  }
-  
-  .linha{
-       
-    margin: 7px;
-    border: 1px solid rgb(255, 254, 254);
-    width: 25px;
-  }
-  
   
   
   #menu{
@@ -357,26 +259,13 @@
   
   }
   
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
   
   
   
   
   
   
-  #menu:hover {
-    transition: 0.5s;
-    background-color:rgba(255, 255, 255, 0.2) ;
-    border-radius: 50px;
-    cursor: pointer;
-  }
+  
   
  
   
@@ -388,46 +277,12 @@
     
   }
   
-  .close-video-button {
-    position: absolute;
-    top: 15px;
-    transition: background-color 0.3s;
-    border-radius: 50%;
-    right: 14%;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: transparent;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 9999;
-  
-  }
-  
-  .close-video-button:hover {
-    background-color: rgba(255, 255, 255, 0.2)
-    
-  }
+ 
   
 
   
   
-  
-  @media  (min-width:1920px) {
-   
-    #menu{
-      animation-name: fade-in;
-     
-      animation-duration: 0.5s;
-      padding: 5px;
-      margin-left: 20px;
-      position: fixed;
-      top: 2px;
-    } 
-    
-  }
+
   
   
   
@@ -450,17 +305,7 @@
   
   
   
-  .footer {
-    text-align: center;
-    margin-top: 90%; /* ajuste conforme necessário */
-    font: black;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-  .darken-mode {
-    background-color: rgb(190,153,58);
-  }
-  
+ 
 
 
 /* Adicione essas classes ao seu arquivo CSS para estilizar o layout */
@@ -481,72 +326,38 @@
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-#logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+nav {
+  padding: 0;
+  margin: 0;
 }
 
 
-.user-dropdown {
-  position: relative;
-}
 
-.profile-img {
-  width: 48px;
-  height: 48px;
 
+
+#remover-historico {
+
+ 
+  transition: background-color 0.3s;
   border-radius: 50%;
-  object-fit: cover;
+right: 20%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
+  z-index: 1;
 }
 
-.user-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  margin-right: 20%;
-  min-width: 220px; /* Largura mínima para o container */
-  background-color: black;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  padding: 8px 0;
-  font-size: 14px;
-  border-radius: 4px;
+#remover-historico:hover {
+  /* Estilos ao passar o mouse */
+  background-color: rgba(255, 255, 255, 0.2); /* Vermelho semi-transparente */
 }
 
-.user-dropdown-menu a {
-  display: block;
-  padding: 10px 20px;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
 
-.user-dropdown-menu a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.user-dropdown-menu a:last-child {
-  border-top: 1px solid #ccc;
-}
-
-.user-dropdown-menu a:last-child:hover {
-  background-color: #f0f0f0;
-  border-top: 1px solid #ccc;
-}
-
-.user-dropdown-menu a.dropdown-item-active {
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-.user-dropdown.show .user-dropdown-menu {
-  display: block;
-}
 
 
 #teste {
@@ -556,7 +367,6 @@
   
 }
 
- /* Ajuste do estilo do título e do conteúdo */
  #infocontainer {
   background-color: #141414;
   color: white;
@@ -565,14 +375,19 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }/** Estilo para a imagem principal */
 .main-image {
-  width: 85%; /* Defina a largura que desejar */
-  max-height: 85vh; /* Defina a altura máxima que desejar */
+  width: 86%; /* Defina a largura que desejar */
+  max-height: 100vh; /* Defina a altura máxima que desejar */
   object-fit: cover;
+  
   border-radius: 10px; /* Adicione um valor de border-radius para arredondar as bordas */
   display: block; /* Para centralizar horizontalmente */
   margin: 0 auto; /* Para centralizar horizontalmente */
-  position: relative; /* Para permitir que o elemento de sobreposição seja posicionado sobre a imagem */
+ 
 }
+
+
+
+
 .custom-container {
   border-radius: 10px; /* Ajuste o valor conforme desejado */
   border: 1px solid gray; /* Adicione uma borda para destacar o container */
@@ -624,7 +439,7 @@
 }
 
 .searchinput {
-  width: 0;
+
   transition: width 0.5s;
 }
 
@@ -633,8 +448,20 @@
   place-items: center;
   width: 25px;
   height: 25px;
+
   cursor: pointer;
   transition: color 0.25s
+}
+
+#profile-photo {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  margin-left: 50px;
+}
+
+.search:not(:focus-within) .searchinput {
+  width: 0;
 }
 
 .searchbutton:hover {
@@ -648,3 +475,18 @@ width: 200px;
   font: inherit;
   color: #e3e3e3;
 }
+
+/* Remova a borda de foco padrão */
+.search :is(input, button):focus {
+  outline: none;
+  border: none;
+}
+
+.carousel-inner .carousel-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+
+
+
+

@@ -17,10 +17,10 @@ class Login
     public function handle(Request $request, Closure $next): Response
     {
         if(auth()->user()->is_admin){
-            return redirect("/");
+            return redirect("/pesquisa");
         }
         else{
-            return redirect("/pesquisa");
+            return redirect("/");
         }
         return $next($request);
     }

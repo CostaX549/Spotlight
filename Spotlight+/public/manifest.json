@@ -1,0 +1,17 @@
+{
+    "name": "Spotlight+",
+    "short_name": "SPL+",
+    "start_url": "/",
+    "background_color": "#BE993A",
+    "description": "Spotlight+ Demo",
+    "display": "fullscreen",
+    "theme_color": "#BE993A",
+    "icons": [
+        {
+            "src": "corinthians.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

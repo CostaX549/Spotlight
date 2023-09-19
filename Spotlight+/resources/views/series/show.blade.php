@@ -1,43 +1,58 @@
 @extends('layouts.main')
 
-@section('title', $serie->title)
+@section('title', $serie['title'])
 
 @section('content')
-
+<a href="javascript:history.back()" class="back-link text-primary">
+        <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+    </a>
 <div class="container-fluid p-0">
     <div class="position-relative">
-        <img src="https://image.tmdb.org/t/p/original/{{ $serie->backdrop_path }}" alt="{{ $serie->title }}" class="img-fluid rounded main-image">
+        <img src="https://image.tmdb.org/t/p/original/{{ $serie['backdrop_path'] }}" alt="{{ $serie['title'] }}" class="img-fluid rounded main-image">
         <div class="image-overlay"></div>
     </div>
 </div>
 
 <div id="infocontainer" class="container mt-5">
     <div class="row">
-        <div class="col-md-8">
-            <h1 class="mb-4">{{ $serie->title }}</h1>
-            <p class="lead">{{ $serie->overview }}</p>
-            <p class="font-weight-bold">
-                @if(isset($serie->vote_average))
-                    Avaliação: {{ $serie->vote_average }}
-                @else
-                    Avaliação indisponível
-                @endif
-            </p>
+        <div class="col-md-12">
+            <h1 class="mb-4">{{ $serie['title']}}</h1>
+            <p class="lead">{{ $serie['overview'] }}</p>
+            <div class="col-md-12">
+        <div class="custom-container custom-flex">
+          
+           
+            <i class="ri-star-fill ri-lg"></i> <!-- Ícone de estrela grande --><h4>{{ number_format($serie['vote_average'], 1) }}/10</h4>
+         
+           
+            
+        </div>
+    </div>
+    <a href="{{ route('series.temporadas', ['id' => $serie['id']]) }}">
+    <div class="col-md-12">
+        <div class="custom-container custom-flex">
+            <h3>Temporadas</h3>
+            <h4>{{ $seasonCount }}</h4>
+        </div>
+    </div>
+</a>
+
+
+
+
+
+
         </div>
     </div>
     
-    <div class="row mt-5">
-    <div class="col-md-12">
-        <h2>Temporadas</h2>
-         <p>Total de temporadas: {{ count($temporadas) }}</p>
-    </div>
-</div>
+    
     
     <div class="row mt-5">
         <div class="col-md-12">
+        <div class="row mt-5">
             <h2>Trailer</h2>
             @php
-                $apiKey = '9549bb8a29df2d575e3372639b821bdc';
+                $apiKey = env('TMDB_API_KEY');
                 $tvId = $serie['id'];
                 
                 $client = new \GuzzleHttp\Client();
@@ -61,7 +76,7 @@
             @endphp
         </div>
     </div>
-    <div class="col-md-12 mt-4">
+    <div class="col-md-12 mt-5">
     @if(auth()->check())
         @php
         $isFavorite = auth()->user()->favoriteSeries->contains('serie_id', $serie['id']);
@@ -81,5 +96,13 @@
         @endif
     @endif
 </div>
+
+@guest
+<a href="/dashboard">
+    <button class="btn btn-primary mt-3 ml-5">
+        Adicionar aos Favoritos
+    </button>
+</a>
+@endguest
 
 @endsection

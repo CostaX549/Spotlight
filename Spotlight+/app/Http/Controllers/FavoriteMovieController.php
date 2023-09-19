@@ -14,6 +14,7 @@ class FavoriteMovieController extends Controller
 {
     public function addToFavorites(Request $request)
 {
+    
     $user = Auth::user();
     $movieId = $request->input('movie_id');
     $favoriteMovies = $user->favoriteMovies()->get();
@@ -39,7 +40,7 @@ public function removeFromFavorites(Request $request)
     // Remove o filme dos favoritos do usuário
     $user->favoriteMovies()->where('movie_id', $movieId)->delete();
     Cache::forget('user_favorite_movies_' . $user->id);
-    return redirect('/dashboard');
+    return redirect('/dashboard')->with('success', 'Filme removido dos favoritos com sucesso.');
  
 }
 

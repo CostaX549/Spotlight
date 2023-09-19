@@ -8,6 +8,9 @@ body {
     background-image: cover;
     background-repeat: no-repeat;
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+    -webkit-user-select: none; /* Para navegadores WebKit (Safari, Chrome) */
+    -moz-user-select: none; /* Para navegadores Firefox */
 }
 
 body::before {
@@ -20,6 +23,18 @@ body::before {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+}
+.register-link p {
+    color: #FFF;
+}
+.register-link a {
+    text-decoration: none;
+    color: #007bff; /* Cor do link (pode ser personalizada) */
 }
 
 .logo img {

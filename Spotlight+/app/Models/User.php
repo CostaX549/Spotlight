@@ -82,4 +82,14 @@ class User extends Authenticatable
 {
     return $this->is_admin;
 }
+
+public function filme()
+    {
+        return $this->belongsTo(Filme::class, 'movie_id');
+    }
+
+    public function historicoVisualizacao()
+{
+    return $this->hasMany(HistoricoVisualizacao::class);
+}
 }

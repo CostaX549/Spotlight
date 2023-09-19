@@ -10,17 +10,24 @@ use Illuminate\Support\Facades\DB; // Importe a classe DB
 
 class PesquisaController extends Controller
 {
-
-    private function getFrequentSearchTerms($user, $minFrequency = 5, $limit = 5)
+    private function getFrequentSearchTerms($user, $limit = 5)
     {
-        return UserSearchTerm::where('user_id', $user->id)
-            ->groupBy('search_term')
-            ->select('search_term', DB::raw('count(*) as total'))
-            ->having('total', '>=', $minFrequency) // Filtro para termos com frequência maior ou igual a $minFrequency
-            ->orderBy('total', 'desc')
-            ->limit($limit)
-            ->pluck('search_term');
+        // Verifique se o usuário está autenticado
+        if (Auth::check()) {
+            // O usuário está autenticado, podemos continuar com a consulta
+            $frequentTerms = UserSearchTerm::where('user_id', $user->id)
+                ->groupBy('search_term')
+                ->select('search_term', DB::raw('count(*) as total'))
+                ->orderBy('created_at', 'desc')
+                ->pluck('search_term');
+    
+            return $frequentTerms;
+        } else {
+            // O usuário não está autenticado, retorne um valor vazio ou lance uma exceção, dependendo dos requisitos do seu aplicativo.
+            return [];
+        }
     }
+
 
     public function index(Request $request)
     {
@@ -30,7 +37,7 @@ class PesquisaController extends Controller
         
         if ($request->has('termo')) {
             $termo = $request->input('termo');
-            $apiKey = '9549bb8a29df2d575e3372639b821bdc';
+            $apiKey = env('TMDB_API_KEY');
 
             // Consulta de cache
            $resultados = Cache::remember('search_results_'.$termo, now()->addHours(1), function () use ($termo, $apiKey) {
@@ -39,7 +46,7 @@ class PesquisaController extends Controller
                 'language' => 'pt-BR',
                 'query' => $termo,
                 'certification_country' => 'BR',
-                'certification.lte' => '12'
+                'certification.lte' => '16'
             ]);
 
             $data = $response->json();
@@ -62,45 +69,26 @@ class PesquisaController extends Controller
             
             return []; // Retorna um array vazio se não houver resultados
         });
+        if (!empty($resultados)) {
             // Salvar o termo de pesquisa do usuário
-            $searchTerm = $request->input('termo');
-            UserSearchTerm::create([
-                'user_id' => $user->id,
-                'search_term' => $searchTerm,
-            ]);
-
-            // Calcular a frequência dos termos de pesquisa
-            $termFrequencies = UserSearchTerm::where('user_id', $user->id)
-                ->select('search_term', \DB::raw('count(*) as count'))
-                ->groupBy('search_term')
-                ->orderBy('count', 'desc')
-                ->get();
-
-            // Selecionar os termos mais frequentes (pode ser os 3 primeiros, por exemplo)
-            $mostFrequentTerms = $termFrequencies->pluck('search_term')->take(3);
-
-            // Encontrar filmes relacionados aos termos mais pesquisados
-            $relatedMovieIds = [];
-            foreach ($mostFrequentTerms as $term) {
-                $response = Http::get("https://api.themoviedb.org/3/search/movie", [
-                    'api_key' => $apiKey,
-                    'language' => 'pt-BR',
-                    'query' => $term,
+            if (Auth::check()) {
+                $searchTerm = $request->input('termo');
+                UserSearchTerm::create([
+                    'user_id' => $user->id,
+                    'search_term' => $searchTerm,
                 ]);
-
-                $data = $response->json();
-
-                if (!empty($data['results'])) {
-                    foreach ($data['results'] as $result) {
-                        $relatedMovieIds[] = $result['id'];
-                    }
-                }
+        
+                // Calcular a frequência dos termos de pesquisa
+                $termFrequencies = UserSearchTerm::where('user_id', $user->id)
+                    ->select('search_term', \DB::raw('count(*) as count'))
+                    ->groupBy('search_term')
+                    ->orderBy('count', 'desc')
+                    ->get();
             }
-            
-            // Limitar o número de filmes relacionados
-            $relatedMovieIds = array_slice($relatedMovieIds, 0, 8);
         }
-      
+    } else {
+        return view('welcome', compact('resultados'));
+    }
 
         $frequentSearchTerms = $this->getFrequentSearchTerms($user);
         return view('welcome', compact('resultados', 'frequentSearchTerms', 'user'));
@@ -108,19 +96,67 @@ class PesquisaController extends Controller
 
     public function welcome(Request $request)
     {
+         // Configuração da API do The Movie DB
+         $apiKey = env('TMDB_API_KEY');
+         $language = 'pt-BR';
+ 
+         // Preparar dados para Filmes
+    $filmes = Cache::remember('filmes_cache_key', now()->addHours(2), function () use ($apiKey, $language) {
+        $apiUrl = "https://api.themoviedb.org/3/movie/popular?api_key={$apiKey}&language={$language}&certification_country=BR&certification.lte=12&page=1";
+        return $this->fetchCarouselData($apiUrl);
+    });
+
+    // Preparar dados para Séries
+    $series = Cache::remember('series_cache_key', now()->addHours(2), function () use ($apiKey, $language) {
+        $disneyPlusSeries = $this->fetchCarouselData(
+            "https://api.themoviedb.org/3/discover/tv?api_key={$apiKey}&language={$language}&with_networks=2739"
+        );
+
+        $netflixSeries = $this->fetchCarouselData(
+            "https://api.themoviedb.org/3/discover/tv?api_key={$apiKey}&language={$language}&with_networks=213"
+        );
+
+        return array_merge($disneyPlusSeries, $netflixSeries);
+    });
+
+    // Preparar dados para Documentários
+    $documentarios = Cache::remember('documentarios_cache_key', now()->addHours(2), function () use ($apiKey, $language) {
+        $apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key={$apiKey}&with_genres=99&language={$language}&certification_country=BR&certification.lte=12";
+        return $this->fetchCarouselData($apiUrl);
+    });
+    
+ // Preparar dados para Animes (adicione esta parte)
+ $animes = Cache::remember('animes_cache_key', now()->addHours(2), function () use ($apiKey, $language) {
+    $apiUrl = "https://api.themoviedb.org/3/discover/tv?api_key={$apiKey}&language={$language}&with_genres=16&certification_country=BR&certification.lte=12";
+    return $this->fetchCarouselData($apiUrl);
+});
+
         $user = Auth::user();
-        $apiKey = '9549bb8a29df2d575e3372639b821bdc';
+        
 
         // Reutilizar a lógica do método index para buscar termos frequentes e filmes relacionados
         $frequentSearchTerms = $this->getFrequentSearchTerms($user);
-        $relatedMovieIds = [];
+       
 
-        if (session()->has('related_movies')) {
-            $relatedMovieIds = session('related_movies');
-        }
+       
 
-        return view('welcome', compact('frequentSearchTerms', 'relatedMovieIds', 'user'));
+        return view('welcome', compact('frequentSearchTerms','user', 'series', 'filmes', 'documentarios', 'animes'));
+        
     }
+
+      // Função para buscar dados da API e formatá-los conforme necessário
+      private function fetchCarouselData($apiUrl)
+      {
+          $response = Http::get($apiUrl);
+          $data = $response->json();
+  
+          // Aqui, você pode formatar os dados conforme necessário, selecionando apenas os campos que deseja exibir nos carrosséis.
+          // Certifique-se de estruturar os dados de acordo com a sua view.
+  
+          return $data['results'] ?? [];
+      }
+
+  
 
 }
 
