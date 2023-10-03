@@ -20,7 +20,7 @@
 
   
 
- 
+    @livewireStyles
 
 
 </head>
@@ -52,5 +52,5 @@
 
     
 </script>
-
+@livewireScripts 
 </html>

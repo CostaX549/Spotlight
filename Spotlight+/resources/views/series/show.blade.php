@@ -4,7 +4,7 @@
 
 @section('content')
 <a href="javascript:history.back()" class="back-link text-primary">
-        <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+        <i class="ri-arrow-left-line ri-lg arrow-icon" style="color: white;"></i>
     </a>
 <div class="container-fluid p-0">
     <div class="position-relative">

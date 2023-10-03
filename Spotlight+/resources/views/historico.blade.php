@@ -24,8 +24,10 @@
     <div class="row align-items-center">
         <div class="col">
             @if (!empty($mediaComDetalhes))
-                <p class="h3 text-white mb-0 d-inline">Histórico: {{ $mediaComDetalhes[0]['data_visualizacao']->format('d/m/Y') }}</p>
-                <button id="botaoExcluirFilmes">Excluir Filmes</button>
+                <p class="h3 text-white mb-0 d-inline" id="dinamicText">Histórico: {{ $mediaComDetalhes[0]['data_visualizacao']->format('d/m/Y') }}</p>
+                <button id="botaoExcluirFilmes" class="btn btn-danger float-end">
+    <i class="fas fa-trash"></i> 
+</button>
             @else
                 <p class="h3 text-white mb-0 d-inline">Histórico</p>
             @endif
@@ -44,13 +46,14 @@
     @method('DELETE')
 
     <div class="container">
+        
         <div class="row" id="movieContainer">
             @foreach($mediaComDetalhes as $media)
             <div class="col-6 col-md-3 mb-4" data-media-id="{{ $media['media_id'] }}">
             @if ($media['media_type'] === 'filme')
-        <a href="{{ route('filmes.show', ['id' => $media['media_id']]) }}">
+        <a href="{{ route('filmes.show', ['filmeId' => $media['media_id']]) }}">
         @elseif ($media['media_type'] === 'serie')
-        <a href="{{ route('series.show', ['id' => $media['media_id']]) }}">
+        <a href="{{ route('series.show', ['serieId' => $media['media_id']]) }}">
           @endif
               
                     <img src="https://image.tmdb.org/t/p/original{{ $media['poster_path'] }}" class="img-fluid rounded" loading="lazy" alt="{{ $media['title'] }}">
@@ -59,7 +62,7 @@
             </div>
             @endforeach
         </div>
-        <button type="button" class="btn btn-danger" id="removerItensSelecionados">Remover Itens Selecionados</button>
+        <button type="button" class="btn btn-danger" id="removerItensSelecionados" style="display: none;">Remover Itens Selecionados</button>
     </div>
 </form>
 </div> 

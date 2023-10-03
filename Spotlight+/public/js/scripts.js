@@ -1,6 +1,6 @@
 $(document).ready(function () {
    
-
+  
   $("#filmeCarousel").owlCarousel({
     items: 4, // Número de itens a serem exibidos
     loop: true, // Loop infinito
@@ -154,10 +154,26 @@ $("#myAnimeCarousel").owlCarousel({
   });
 
 
+  let botaoClicado = false;
 
-
+  // Evento de clique no botão
+  $('#botaoExcluirFilmes').on('click', function() {
+    const botao = $(this);
+  
+    if (botaoClicado) {
+      // Se já foi clicado, transforme-o novamente em ícone de lixeira
+      botao.find('i').removeClass('fa-times').addClass('fa-trash');
+    } else {
+      // Se não foi clicado, transforme-o em ícone de "X"
+      botao.find('i').removeClass('fa-trash').addClass('fa-times');
+    }
+  
+    botao.toggleClass('clicked'); // Adiciona/remova uma classe para acionar a transição CSS
+    botaoClicado = !botaoClicado; // Alterne o estado do botão
+  });
 
 });
+
 
 const filmesSelecionados = [];
 let modoSelecaoAtivado = false; // Variável de controle
@@ -182,6 +198,7 @@ function atualizarEstilo(id) {
 
 // Evento de clique em um filme (apenas quando o modo de seleção estiver ativado)
 $(document).on('click', '.col-6', function() {
+    
     if (modoSelecaoAtivado) { // Verifique se o modo de seleção está ativado
         event.preventDefault(); // Evita a navegação padrão
         const id = $(this).data('media-id');
@@ -189,26 +206,36 @@ $(document).on('click', '.col-6', function() {
         atualizarEstilo(id);
     }
 });
-
+var textoOriginal = $('#dinamicText').text();
 // Evento de clique no botão "Excluir Filmes"
 $('#botaoExcluirFilmes').on('click', function() {
     modoSelecaoAtivado = !modoSelecaoAtivado; // Alterne o modo de seleção ao clicar no botão
 
     if (modoSelecaoAtivado) {
         console.log('Modo de seleção ativado. Clique nos filmes para selecionar.');
+        $('#instruction').show();
+        $('#removerItensSelecionados').show();
+        $('#dinamicText').css('opacity', '0'); // Define a opacidade para 0
+        setTimeout(function() {
+            $('#dinamicText').text('Selecione o que deseja excluir.');
+            $('#dinamicText').css('opacity', '1'); // Define a opacidade de volta para 1
+        }, 300); // Espera 300 milissegundos (0.3 segundos) antes de atualizar o texto
     } else {
         console.log('Modo de seleção desativado. Clique nos posters para ver os filmes.');
-        
-        // Remova os estilos de seleção de todos os filmes selecionados
+        $('#instruction').hide();
+        $('#removerItensSelecionados').hide();
+        $('#dinamicText').css('opacity', '0'); // Define a opacidade para 0
+        setTimeout(function() {
+            $('#dinamicText').text(textoOriginal);
+            $('#dinamicText').css('opacity', '1'); // Define a opacidade de volta para 1
+        }, 300); // Espera 300 milissegundos (0.3 segundos) antes de atualizar o texto
+
         filmesSelecionados.forEach(id => {
-            atualizarEstilo(id); // Chama a função para remover a classe 'selecionado'
+            atualizarEstilo(id);
         });
-        
-        // Limpe a lista de filmes selecionados
         filmesSelecionados.length = 0;
     }
-    
-    // Atualize o estado visual do botão
+
     $(this).toggleClass('modo-selecao-ativado', modoSelecaoAtivado);
 });
 
@@ -227,6 +254,8 @@ $('#removerItensSelecionados').on('click', function() {
     } else {
         console.log('Nenhum item selecionado para remover.');
     }
+
+   
 });
 
 

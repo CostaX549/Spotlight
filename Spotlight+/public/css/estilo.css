@@ -1,10 +1,15 @@
-*{
+* {
     margin: 0;
     padding: 0;
- font: white;
-  
-  }
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+}
 
+.owl-dots {
+  display: none;
+}
  
   
   
@@ -16,14 +21,22 @@
   
   }
 
+  #botaoExcluirFilmes {
+    transition: all 0.3s ease; /* Adicione uma transição suave para todas as propriedades */
+  }
+  
+  #botaoExcluirFilmes.clicked {
+    transform: scale(0.8); /* Reduza o tamanho do botão quando clicado */
+  }
 
-
-
+  #dinamicText {
+    transition: opacity 0.3s ease; /* Adiciona uma transição de fade de 0,3 segundos */
+}
 
  
   
   body::-webkit-scrollbar {
-    width: 7px; /* Largura da barra de rolagem vertical */
+    width: 6px; /* Largura da barra de rolagem vertical */
   }
 
   body::-webkit-scrollbar:hover {
@@ -454,8 +467,8 @@ right: 20%;
 }
 
 #profile-photo {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
   margin-left: 50px;
 }
