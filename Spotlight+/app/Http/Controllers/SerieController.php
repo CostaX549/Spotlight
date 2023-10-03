@@ -13,16 +13,16 @@ use Auth;
 
 class SerieController extends Controller
 {
-    public function show($id)
+    public function show($serieId)
     {
         $user = Auth::user();
         $apiKey = env('TMDB_API_KEY');
 
         // Chave única para este cache com base no ID da série
-        $cacheKey = "serie_{$id}";
+        $cacheKey = "serie_{$serieId}";
 
-        $serie = Cache::remember($cacheKey, now()->addHours(2), function () use ($apiKey, $id) {
-            $response = Http::get("https://api.themoviedb.org/3/tv/{$id}?api_key={$apiKey}&language=pt-BR");
+        $serie = Cache::remember($cacheKey, now()->addHours(2), function () use ($apiKey, $serieId) {
+            $response = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key={$apiKey}&language=pt-BR");
             $serieData = $response->json();
 
             return [

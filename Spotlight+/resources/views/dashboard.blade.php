@@ -4,7 +4,7 @@
 
 @section('content')
 <a href="javascript:history.back()" class="back-link text-primary">
-    <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+    <i class="ri-arrow-left-line ri-lg arrow-icon"  style="color: white;"></i>
 </a>
 
 @guest 
@@ -43,38 +43,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                @if(count($favoriteMovies) > 0 || count($favoriteSeries) > 0)
+             
                 <div class="row">
-                    @foreach ($favoriteMovies as $index => $favoriteMovie)
+                    @foreach ($movieDetails as $movie)
                     <div class="col-6 col-md-3 mb-4"> <!-- Use col-6 para dispositivos móveis e col-3 para PCs -->
-                        <a href="{{ route('filmes.show', [$favoriteMovie['movie_id']]) }}">
-                            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $favoriteMovie->moviePosterPath }}" alt="" class="d-block w-100 rounded">
+                        <a href="{{ route('filmes.show', [$movie['id']]) }}">
+                            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $movie['poster_path'] }}" alt="" class="d-block w-100 rounded">
                         </a>
                     </div>
-                    @if(($index + 1) % 4 == 0)
-                    </div><div class="row">
-                    @endif
-                    @endforeach
-
-                    @foreach ($favoriteSeries as $index => $favoriteSerie)
-                    <div class="col-6 col-md-3 mb-4"> <!-- Use col-6 para dispositivos móveis e col-3 para PCs -->
-                        <a href="{{ route('series.show', [$favoriteSerie['serie_id']]) }}">
-                            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $favoriteSerie->seriePosterPath }}" class="img-fluid rounded">
-                        </a>
-                    </div>
-                    @if(($index + 1) % 4 == 0)
-                    </div><div class="row">
-                    @endif
                     @endforeach
                 </div>
-                @else
-                <h5 class="text-white">Você não possui filmes ou séries favoritas.</h5>
-                <a href="/">Conheça novos filmes e séries</a>
-                @endif
             </div>
         </div>
     </div>
 </div>
+
+       
 
 @endauth
 

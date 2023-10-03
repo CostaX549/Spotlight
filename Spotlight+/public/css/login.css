@@ -3,10 +3,10 @@ body {
     margin: 0;
     height: 100vh;
     width: 100%;
-    position: relative;
-    background-image: url(../img/background.jpg);
-    background-image: cover;
+    background-image: url(../img/fundodourado.jpg);
+    background-size: cover; /* Garante que a imagem cubra todo o elemento */
     background-repeat: no-repeat;
+    background-position: center bottom; /* Alinha a imagem na parte inferior do elemento */
     font-family: Arial, Helvetica, sans-serif;
     user-select: none;
     -webkit-user-select: none; /* Para navegadores WebKit (Safari, Chrome) */
@@ -15,7 +15,7 @@ body {
 
 body::before {
     content: '';
-    background-color: rgb(0, 0, 0, .5);
+  background-color: rgba(0,0,0,0.3);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -40,6 +40,7 @@ body::before {
 .logo img {
     height: 45px;
     width: 167px;
+    object-fit: cover;
 }
 
 .header {
@@ -53,9 +54,9 @@ body::before {
     z-index: 90;
     position: relative;
     max-width: 450px;
-    height: 550px;
+    height: 650px;
     margin-left: 50%;
-    background-color: rgb(0, 0, 0, 0.75);
+    background-color: rgb(0, 0, 0);
     border-radius: 10px;
     box-sizing: border-box;
     transform: translateX(-50%);
@@ -111,8 +112,8 @@ body::before {
 
     .login_body {
         padding: 30px;
-        width: 100%;
         height: auto;
+        width: 80%;
     }
 }
 

@@ -16,7 +16,7 @@ class CheckMovieAccess
     public function handle(Request $request, Closure $next): Response
     {
     $forbiddenMovies = [617932];
-    $movieId = $request->route('id');
+    $movieId = $request->route('filmeId');
 
     if (in_array($movieId, $forbiddenMovies)) {
         

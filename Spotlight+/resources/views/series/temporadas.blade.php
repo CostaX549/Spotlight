@@ -6,7 +6,7 @@
 use Carbon\Carbon;
 @endphp
 <a href="javascript:history.back()" class="back-link text-primary">
-        <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+        <i class="ri-arrow-left-line ri-lg arrow-icon" style="color: white;"></i>
     </a>
     <div class="container text-center">
         <h1 class="text-white">Temporadas da Série: {{$serieName}}</h1>

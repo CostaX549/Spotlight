@@ -15,7 +15,7 @@
 
 @if(!empty($resultados) && request()->is('pesquisa'))
     <a href="javascript:history.back()" class="back-link text-primary">
-        <i class="ri-arrow-left-line ri-lg arrow-icon"></i>
+        <i class="ri-arrow-left-line ri-lg arrow-icon" style="color: white;"></i>
     </a>
     <div id="teste" class="container mb-1">
         <div class="row align-items-center">
@@ -31,10 +31,13 @@
                 @if(isset($resultado['poster_path']))
                     @php
                         $routeName = isset($resultado['title']) ? 'filmes.show' : 'series.show';
-                        $routeParameters = ['id' => $resultado['id']];
+                        $routeParameters = [
+                        'filmeId' => isset($resultado['title']) ? $resultado['id'] : null,
+                        'serieId' => isset($resultado['name']) ? $resultado['id'] : null,
+                    ];
                     @endphp
 
-                    <div class="col-md-3">
+                    <div class="col-6 col-md-3">
                         <a href="{{ route($routeName, $routeParameters) }}">
                             <img src="https://image.tmdb.org/t/p/original/{{ $resultado['poster_path'] }}" alt="{{ $resultado['title'] ?? $resultado['name'] }}" 
                             class="img-fluid rounded mb-4">
@@ -116,12 +119,15 @@
                         @php
                         
                             $routeName = isset($result['title']) ? 'filmes.show' : 'series.show';
-                            $routeParameters = ['id' => $result['id']];
+                            $routeParameters = [
+                        'filmeId' => isset($result['title']) ? $result['id'] : null,
+                        'serieId' => isset($result['name']) ? $result['id'] : null,
+                    ];
                         @endphp
                       
                         <div class="item">
                             <a href="{{ route($routeName, $routeParameters) }}">
-                                <img src="https://image.tmdb.org/t/p/original/{{ $result['poster_path'] }}" class="img-fluid rounded " alt="Poster do Filme">
+                                <img src="https://image.tmdb.org/t/p/original/{{ $result['poster_path'] }}" class="img-fluid rounded mb-4 " alt="Poster do Filme">
                             </a>
                             </div>
                             
@@ -136,7 +142,7 @@
 @endif
 </div>
         </div>
-<div id="teste"class="container mt-2 mb-1">
+<div id="teste"class="container mt-1 mb-1">
       <div class="row align-items-center">
         <div class="col">
           <p class="h3 text-white mb-0 d-inline">Filmes</p>
@@ -151,8 +157,8 @@
     <div id="myCarouselThree" class="owl-carousel">
     @foreach ($filmes as $filme)
     <div class="item">
-        <a href="{{ route('filmes.show', ['id' => $filme['id']]) }}">
-            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $filme['poster_path'] }}" alt="{{ $filme['title'] }}" class="img-fluid rounded mb-2">
+        <a href="{{ route('filmes.show', ['filmeId' => $filme['id']]) }}">
+            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $filme['poster_path'] }}" alt="{{ $filme['title'] }}" class="img-fluid rounded mb-4">
         </a>
     </div>
 @endforeach
@@ -168,7 +174,7 @@
 
     
 
-    <div id="teste" class="container mb-1">
+    <div id="teste" class="container mt-1 mb-1">
       <div class="row align-items-center">
         <div class="col">
           <p class="h3 text-white mb-0 d-inline">Séries</p>
@@ -181,8 +187,8 @@
   <div id="myCarouselSeries" class="owl-carousel">
   @foreach ($series as $serie)
   <div class="item">
-              <a href="{{ route('series.show', ['id' => $serie['id']]) }}">
-                <img src="{{ 'https://image.tmdb.org/t/p/original/' . $serie['poster_path'] }}" alt="{{ $serie['name'] }}" class="img-fluid rounded mb-2">
+              <a href="{{ route('series.show', ['serieId' => $serie['id']]) }}">
+                <img src="{{ 'https://image.tmdb.org/t/p/original/' . $serie['poster_path'] }}" alt="{{ $serie['name'] }}" class="img-fluid rounded mb-4">
                 </a>
             </div>
             @endforeach
@@ -192,7 +198,7 @@
 
    
 
-    <div id="teste"class="container mb-1">
+    <div id="teste"class="container mt-1 mb-1">
       <div class="row align-items-center">
         <div class="col">
           <p class="h3 text-white mb-0 d-inline">Documentários</p>
@@ -205,15 +211,15 @@
   <div id="myCarouselDocumentaries" class="owl-carousel">
   @foreach ($documentarios as $documentario)
   <div class="item">
-  <a href="{{ route('filmes.show', ['id' => $documentario['id']]) }}">
-                <img src="{{ 'https://image.tmdb.org/t/p/original/' . $documentario['poster_path'] }}" alt="{{ $documentario['title'] }}" class="img-fluid rounded mb-2">
+  <a href="{{ route('filmes.show', ['filmeId' => $documentario['id']]) }}">
+                <img src="{{ 'https://image.tmdb.org/t/p/original/' . $documentario['poster_path'] }}" alt="{{ $documentario['title'] }}" class="img-fluid rounded mb-4">
                 </a>
             </div>
  
   @endforeach
   </div>
 </div>
-<div id="teste"class="container mb-1">
+<div id="teste"class="container mt-1 mb-1">
       <div class="row align-items-center">
         <div class="col">
           <p class="h3 text-white mb-0 d-inline">Desenhos e animes</p>
@@ -226,8 +232,8 @@
     <div id="myAnimeCarousel" class="owl-carousel">
     @foreach ($animes as $anime)
     <div class="item">
-        <a href="{{ route('series.show', ['id' => $anime['id']]) }}">
-            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $anime['poster_path'] }}" alt="{{ $anime['name'] }}" class="img-fluid rounded mb-2">
+        <a href="{{ route('series.show', ['serieId' => $anime['id']]) }}">
+            <img src="{{ 'https://image.tmdb.org/t/p/original/' . $anime['poster_path'] }}" alt="{{ $anime['name'] }}" class="img-fluid rounded mb-4">
         </a>
     </div>
 @endforeach
