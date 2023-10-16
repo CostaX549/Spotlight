@@ -36,9 +36,11 @@
         </div>
     </div>
     @if (empty($mediaComDetalhes))
-    <div class="row" style="margin-left: 295px; margin-top: 10px;">
-        <h5 class="text-white">Você não possui filmes ou séries no histórico.</h5>
-        <a href="/">Veja novos filmes e séries</a>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6 text-center">
+            <h5 class="text-white">Você não possui filmes ou séries no histórico.</h5>
+            <a href="/" class="btn btn-primary mt-3">Veja novos filmes e séries</a>
+        </div>
     </div>
     @else
     

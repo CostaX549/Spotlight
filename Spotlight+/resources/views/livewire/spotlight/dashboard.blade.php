@@ -32,37 +32,56 @@
         }, 5000); // 5000 milissegundos = 5 segundos
     </script>
     @endif
-    <div class="container mb-1" id="teste">
+
+  <div class="container">
+    <div id="teste"class="container  mb-1">
         <div class="row align-items-center">
-            <div class="col">
-                <p class="h3 text-white mb-0 d-inline">Meus Favoritos</p>
-            </div>
+          <div class="col">
+            <p class="h3 text-white d-inline">Meus Favoritos</p>
+          </div>
+        
         </div>
-    </div>
-    
+      </div>
+ 
     <div class="py-12">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                 
+                   
+                  @if(!empty($movieDetails) || !empty($seriesDetails))
                     <div class="row">
                         @foreach ($movieDetails as $movie)
-                        <div class="col-6 col-md-3 mb-4"> <!-- Use col-6 para dispositivos móveis e col-3 para PCs -->
-                            <a href="{{ route('filmes.show', [$movie['id']]) }}">
-                                <img src="{{ 'https://image.tmdb.org/t/p/original/' . $movie['poster_path'] }}" alt="" class="d-block w-100 rounded">
-                            </a>
-                        </div>
+                            <div class="col-6 col-md-3 mb-4"> <!-- Use col-6 para dispositivos móveis e col-3 para PCs -->
+                                <a href="{{ route('filmes.show', [$movie['id']]) }}">
+                                    <img src="{{ 'https://image.tmdb.org/t/p/original/' . $movie['poster_path'] }}" alt="" class="d-block w-100 rounded">
+                                </a>
+                            </div>
+                        @endforeach
+                        @foreach ($seriesDetails as $serie)
+                            <div class="col-6 col-md-3 mb-4"> <!-- Use col-6 para dispositivos móveis e col-3 para PCs -->
+                                <a href="{{ route('series.show', [$serie['id']]) }}">
+                                    <img src="{{ 'https://image.tmdb.org/t/p/original/' . $serie['poster_path'] }}" alt="" class="d-block w-100 rounded">
+                                </a>
+                            </div>
                         @endforeach
                     </div>
+                    @else 
+                    <div class="row justify-content-center mt-4">
+                        <div class="col-md-6 text-center">
+                            <h5 class="text-white">Você não possui filmes ou séries nos favoritos.</h5>
+                            <a href="/" class="btn btn-primary mt-3">Favorite novos filmes e séries.</a>
+                        </div>
+                    </div>
+                   
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-    
-           
-    
-    @endauth
-    
-    @endsection
+   
+</div>
+@endauth 
     
 </div>
+
+@endsection

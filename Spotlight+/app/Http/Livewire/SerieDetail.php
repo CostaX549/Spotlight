@@ -41,6 +41,12 @@ class SerieDetail extends Component
         $this->user = $user;
         $this->seasonCount = $seasonCount;
 
+        if (auth()->check()) {
+            $user = auth()->user();
+            $serieId = $this->serie['id'];
+            $this->isFavorite = $user->favoriteSeries()->where('serie_id', $serieId)->exists();
+        }
+
         $this->addToHistory();
     }
     

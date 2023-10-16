@@ -18,20 +18,32 @@
             @csrf
 
             <div class="input_box">
-                <input required type="text" name="name" placeholder="Nome">
+                <input required type="text" name="name" placeholder="Nome" value="{{ old('name') }}">
             </div>
-
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            
             <div class="input_box">
-                <input required type="email" name="email" placeholder="Email">
+                <input required type="email" name="email" placeholder="Email" value="{{ old('email') }}">
             </div>
-
+            @error('email')
+                <div class="alert alert-danger" style="color: #fff;">{{ $message }}</div>
+            @enderror
+            
             <div class="input_box">
                 <input required type="password" name="password" placeholder="Senha">
             </div>
-
+            @error('password')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            
             <div class="input_box">
                 <input required type="password" name="password_confirmation" placeholder="Confirme a Senha">
             </div>
+            @error('password_confirmation')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
 
             <div>
                 <button class="submit" type="submit">Registrar</button>

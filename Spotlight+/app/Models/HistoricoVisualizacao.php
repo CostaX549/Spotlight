@@ -10,13 +10,13 @@ class HistoricoVisualizacao extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'media_id',    // ID da mídia (filme ou série)
-        'media_type',  // Tipo de mídia (filme ou série)
+        'media_id',    
+        'media_type',  
         'created_at',
         'updated_at',
     ];
 
-    protected $table = 'historico_visualizacoes'; // Nome da tabela
+    protected $table = 'historico_visualizacoes'; 
 
   
 

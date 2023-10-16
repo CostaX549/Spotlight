@@ -10,7 +10,7 @@ class Dashboard extends Component
 {
     public $user;
     public $movieDetails;
-
+    public $seriesDetails; 
 
     
     public function mount()
@@ -18,9 +18,11 @@ class Dashboard extends Component
         if (auth()->check()) {
             $user = auth()->user();
             $favoriteMovies = $user->favoriteMovies->pluck('movie_id');
+            $favoriteSeries = $user->favoriteSeries->pluck('serie_id');
             $apiKey = env('TMDB_API_KEY');
             $movieDetails = [];
-
+            $seriesDetails = [];
+            if (!empty($favoriteMovies)) {
             foreach ($favoriteMovies as $movieId) {
                 $cacheKey = "movie_details_{$movieId}";
 
@@ -39,9 +41,27 @@ class Dashboard extends Component
                     $movieDetails[] = $cachedMovieDetails;
                 }
             }
+        }
+        
+        if (!empty($favoriteSeries)) {
+            foreach ($favoriteSeries as $serieId) {
+                $cacheKey = "series_details_{$serieId}";
+
+                $cachedSeriesDetails = Cache::get($cacheKey);
+
+                if ($cachedSeriesDetails === null) {
+                    $response = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key={$apiKey}&language=pt-BR");
+                    $seriesDetails[] = json_decode($response->getBody(), true);
+                    Cache::put($cacheKey, $seriesDetails[count($seriesDetails) - 1], 1440);
+                } else {
+                    $seriesDetails[] = $cachedSeriesDetails;
+                }
+            }
+        }
 
             $this->user = $user;
             $this->movieDetails = $movieDetails;
+            $this->seriesDetails = $seriesDetails;
         }
     }
     

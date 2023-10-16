@@ -53,15 +53,6 @@ Route::get('/documentarios/{id}', [DocumentarioController::class, 'show'])->name
 Route::get('/', [PesquisaController::class, 'welcome'])->name('pesquisa.welcome');
 Route::get('/api-key', [ApiKeyController::class, 'getApiKey']);
 
-Route::middleware(['auth'])->group(function () {
-    // Rota para adicionar uma série aos favoritos
-    Route::post('/series/favorite/add', 'App\Http\Controllers\FavoriteSerieController@addToFavorites')->name('series.favorite.add');
-
-    // Rota para remover uma série dos favoritos
-    Route::post('/series/favorite/remove', 'App\Http\Controllers\FavoriteSerieController@removeFromFavorites')->name('series.favorite.remove');
-
-  
-});
 
 Route::get('/sobrenos',function () {
 return view('sobrenos');
