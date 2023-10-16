@@ -10,6 +10,7 @@ use App\Http\Controllers\PesquisaController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\RankingController;
 use App\Http\Livewire\MovieDetail;
+use App\Http\Livewire\SerieDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Middleware\NoCacheMiddleware;
@@ -38,7 +39,7 @@ Route::get('/historico', Historico::class);
   Route::get('/filmes/{filmeId}', MovieDetail::class)->name('filmes.show')
   ->middleware(\App\Http\Middleware\CheckMovieAccess::class);
 
-
+  Route::get('/series/{serieId}', SerieDetail::class)->name('series.show'); 
 
 Route::get('/pesquisa', [PesquisaController::class, 'index'])->name('pesquisa.index');
 
@@ -46,7 +47,7 @@ Route::get('/ranking', [RankingController::class, 'rankingAvaliacao'])->name('ra
 
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
-Route::get('/series/{serieId}', [SerieController::class, 'show'])->name('series.show'); 
+
 Route::get('/documentarios/{id}', [DocumentarioController::class, 'show'])->name('documentarios.show');
 
 Route::get('/', [PesquisaController::class, 'welcome'])->name('pesquisa.welcome');

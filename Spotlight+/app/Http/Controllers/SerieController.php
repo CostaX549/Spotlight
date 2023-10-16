@@ -53,28 +53,26 @@ class SerieController extends Controller
             }
         }
 
-        $seasonCount = count(array_filter($serie['seasons'], function ($season) {
-            return $season['season_number'] > 0;
-        }));
+      
 
         return view('series.show', compact('serie', 'user', 'seasonCount'));
     }
 
-    public function showSeasons($id)
+    public function showSeasons($serieId)
 {
     $apiKey = env('TMDB_API_KEY');
 
     // Defina uma chave única para o cache com base no ID da série
-    $cacheKey = "seasons_{$id}";
+    $cacheKey = "seasons_{$serieId}";
 
     // Tente obter os resultados do cache se já estiverem em cache
-    list($seasons, $serieName) = Cache::remember($cacheKey, now()->addHours(2), function () use ($apiKey, $id) {
+    list($seasons, $serieName) = Cache::remember($cacheKey, now()->addHours(2), function () use ($apiKey, $serieId) {
         // Obter os detalhes da série em português
-        $portugueseResponse = Http::get("https://api.themoviedb.org/3/tv/{$id}?api_key={$apiKey}&language=pt-BR");
+        $portugueseResponse = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key={$apiKey}&language=pt-BR");
         $portugueseSerieData = $portugueseResponse->json();
 
         // Obter os detalhes da série em inglês
-        $englishResponse = Http::get("https://api.themoviedb.org/3/tv/{$id}?api_key={$apiKey}&language=en-US");
+        $englishResponse = Http::get("https://api.themoviedb.org/3/tv/{$serieId}?api_key={$apiKey}&language=en-US");
         $englishSerieData = $englishResponse->json();
 
         $seasons = [];
