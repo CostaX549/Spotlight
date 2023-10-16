@@ -67,6 +67,9 @@ class Dashboard extends Component
     
     public function render()
     {
-        return view('livewire.spotlight.dashboard');
+        return view('livewire.spotlight.dashboard')
+        ->extends('layouts.main')
+        
+        ->section('content');
     }
 }

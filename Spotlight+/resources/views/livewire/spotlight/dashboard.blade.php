@@ -1,9 +1,10 @@
+@section('title', 'Meus Favoritos')
 <div>
-    @extends('layouts.main')
 
-    @section('title', 'Meus Favoritos')
+
+
     
-    @section('content')
+
     <a href="javascript:history.back()" class="back-link text-primary">
         <i class="ri-arrow-left-line ri-lg arrow-icon"  style="color: white;"></i>
     </a>
@@ -84,4 +85,4 @@
     
 </div>
 
-@endsection
+

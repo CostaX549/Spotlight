@@ -1,9 +1,10 @@
+@section('title', 'Histórico')
 <div>
-    @extends('layouts.main')
+  
 
-    @section('title', 'Histórico')
+ 
     
-    @section('content')
+
     @guest
     <div class="container text-center">
         <div class="text-center text-white">
@@ -72,7 +73,7 @@
         </div>
     </div>
     
-    <div class="container">
+
     
     
       
@@ -83,6 +84,6 @@
         {{ $historico->links('vendor.pagination.bootstrap-5') }}
     </div>
     
-    @endsection
+    
     
 </div>

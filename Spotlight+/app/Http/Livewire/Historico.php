@@ -61,6 +61,8 @@ class Historico extends Component
             $mediaComDetalhes[] = $mediaDetalhes;
         }
     }
-    return view('livewire.spotlight.historico', ['mediaComDetalhes' => $mediaComDetalhes, 'historico' => $historico]);
+    return view('livewire.spotlight.historico', ['mediaComDetalhes' => $mediaComDetalhes, 'historico' => $historico])
+    ->extends('layouts.main')
+    ->section('content');
     }
 }
