@@ -16,7 +16,7 @@
    
     
     <link rel="stylesheet" href="/css/login.css">
-
+    <link rel="icon" href="/img/spotlighticon.png" type="image/png">
 
 
   
